@@ -7,24 +7,18 @@ pipeline {
     }
 
     stages {
-//         stage('Checkout') {
-//             // write your logic here
-//             steps {
-//                 git branch: 'main',
-//                     url: 'https://github.com/gajensa/java-standalone-application.git'
-//             }
-//         }
+        stage('Checkout') {
+            // write your logic here
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/gajensa/java-standalone-application.git'
+            }
+        }
         stage('Build') {
             // write your logic here
             steps {
                 echo 'Building....'
-                bat '"C:/apache-maven-3.9.9/bin/mvn" clean install'
-            }
-        }
-        stage('Deploy') {
-            // write your logic here
-            steps {
-                bat 'java -cp target/java-standalone-application-1.0-SNAPSHOT.jar com.expertszen.App'
+                bat 'mvn clean install'
             }
         }
         stage('Test') {
@@ -38,5 +32,12 @@ pipeline {
                 }
             }
         }
+        stage('Deploy') {
+            // write your logic here
+            steps {
+                bat 'java -cp target/java-standalone-application-1.0-SNAPSHOT.jar com.expertszen.App'
+            }
+        }
+
     }
 }
