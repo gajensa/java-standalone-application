@@ -20,7 +20,7 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
-        stage('Run Application') {
+        stage('Deploy') {
             // write your logic here
             steps {
                 bat 'java -cp target/java-standalone-application-1.0-SNAPSHOT.jar com.expertszen.App'
