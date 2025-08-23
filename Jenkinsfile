@@ -18,7 +18,7 @@ pipeline {
             // write your logic here
             steps {
                 echo 'Building....'
-                bat 'mvn clean install'
+                bat '"C:/apache-maven-3.9.9/bin/mvn" clean install'
             }
         }
         stage('Deploy') {
