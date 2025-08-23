@@ -7,13 +7,13 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            // write your logic here
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/gajensa/java-standalone-application.git'
-            }
-        }
+//         stage('Checkout') {
+//             // write your logic here
+//             steps {
+//                 git branch: 'main',
+//                     url: 'https://github.com/gajensa/java-standalone-application.git'
+//             }
+//         }
         stage('Build') {
             // write your logic here
             steps {
