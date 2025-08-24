@@ -49,6 +49,9 @@ pipeline {
         success {
             // This block only runs if the entire pipeline is successful.
             echo 'Sending SUCCESS email notification...'
+            echo "${env.JOB_NAME}"
+            echo "${env.BUILD_NUMBER}"
+            echo "${env.BUILD_URL}"
             emailext(
                 subject: "SUCCESS: Jenkins Job '${env.JOB_NAME} [#${env.BUILD_NUMBER}]'",
                 body: """
