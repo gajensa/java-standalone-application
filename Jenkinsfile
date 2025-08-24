@@ -61,7 +61,8 @@ pipeline {
                     Status: SUCCESS
                     Build URL: ${env.BUILD_URL}
                 """,
-                to: 'sangeethagajendran2000@gmail.com'
+                to: 'sangeethagajendran2000@gmail.com',
+                from: 'sangeethagajendran2000@gmail.com'
             )
         }
         failure {
