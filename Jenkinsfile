@@ -43,7 +43,7 @@ pipeline {
                 script {
                     echo 'Sending email......'
                     echo "${currentBuild.currentResult}"
-                    if (currentBuild.currentResult == 'SUCCESS') {
+                    if (${currentBuild.currentResult} == 'SUCCESS') {
                         emailext(
                             subject: "SUCCESS: Jenkins Job '1'",
                             body: """
