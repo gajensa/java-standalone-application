@@ -26,11 +26,6 @@ pipeline {
             steps {
                 bat 'mvn test'
             }
-//             post {
-//                 always {
-//                     junit 'target/surefire-reports/*.xml'
-//                 }
-//             }
         }
         stage('Deploy') {
             // write your logic here
@@ -49,9 +44,6 @@ pipeline {
         success {
             // This block only runs if the entire pipeline is successful.
             echo 'Sending SUCCESS email notification...'
-            echo "${env.JOB_NAME}"
-            echo "${env.BUILD_NUMBER}"
-            echo "${env.BUILD_URL}"
             emailext(
                 subject: "SUCCESS: Jenkins Job '${env.JOB_NAME} [#${env.BUILD_NUMBER}]'",
                 body: """
@@ -61,8 +53,7 @@ pipeline {
                     Status: SUCCESS
                     Build URL: ${env.BUILD_URL}
                 """,
-                to: 'sangeethagajendran2000@gmail.com',
-                from: 'sangeethagajendran2000@gmail.com'
+                to: 'sangeethagajendran2000@gmail.com'
             )
         }
         failure {
