@@ -58,7 +58,7 @@ pipeline {
                     Status: SUCCESS
                     Build URL: ${env.BUILD_URL}
                 """,
-                to: 'expertszen@gmail.com,sangeethagajendran2000@gmail.com'
+                to: 'sangeethagajendran2000@gmail.com'
             )
         }
         failure {
@@ -73,7 +73,7 @@ pipeline {
                     Status: FAILURE
                     Check logs here: ${env.BUILD_URL}
                 """,
-                to: 'expertszen@gmail.com,sangeethagajendran2000@gmail.com'
+                to: 'sangeethagajendran2000@gmail.com'
             )
         }
         unstable {
@@ -88,7 +88,7 @@ pipeline {
                     Status: UNSTABLE (Check test results)
                     Check logs here: ${env.BUILD_URL}
                 """,
-                to: 'expertszen@gmail.com,sangeethagajendran2000@gmail.com'
+                to: 'sangeethagajendran2000@gmail.com'
             )
         }
     }
