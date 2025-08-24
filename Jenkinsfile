@@ -44,13 +44,13 @@ pipeline {
                     echo 'Sending email......'
                     if (currentBuild.currentResult == 'SUCCESS') {
                         emailext(
-                            subject: "SUCCESS: Jenkins Job '${env.JOB_NAME} [#${env.BUILD_NUMBER}]'",
+                            subject: "SUCCESS: Jenkins Job '1'",
                             body: """
-                                The Jenkins job '${env.JOB_NAME}' has completed successfully.
+                                The Jenkins job '1' has completed successfully.
 
-                                Build Number: ${env.BUILD_NUMBER}
+                                Build Number: 1
                                 Status: SUCCESS
-                                Build URL: ${env.BUILD_URL}
+                                Build URL: 1
                             """,
                             to: 'sangeethagajendran2000@gmail.com'
                         )
