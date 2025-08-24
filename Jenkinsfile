@@ -38,39 +38,50 @@ pipeline {
                 bat 'java -cp target/java-standalone-application-1.0-SNAPSHOT.jar com.expertszen.App'
             }
         }
-        stage('Post Build Notification') {
-            steps {
-                script {
-                    echo 'Sending email......'
-                    echo "${currentBuild.currentResult}"
-                    if (${currentBuild.currentResult} == 'SUCCESS') {
-                        emailext(
-                            subject: "SUCCESS: Jenkins Job '1'",
-                            body: """
-                                The Jenkins job '1' has completed successfully.
-
-                                Build Number: 1
-                                Status: SUCCESS
-                                Build URL: 1
-                            """,
-                            to: 'sangeethagajendran2000@gmail.com'
-                        )
-                    } else if (currentBuild.currentResult == 'FAILURE') {
-                        emailext(
-                            subject: "FAILURE: Jenkins Job '${env.JOB_NAME} [#${env.BUILD_NUMBER}]'",
-                            body: """
-                                The Jenkins job '${env.JOB_NAME}' has FAILED.
-
-                                Build Number: ${env.BUILD_NUMBER}
-                                Status: FAILURE
-                                Check logs here: ${env.BUILD_URL}
-                            """,
-                            to: 'sangeethagajendran2000@gmail.com'
-                        )
-                    }
-                    echo 'email sent....'
-                }
+        post {
+        success {
+            script {
+                echo 'Sending email for SUCCESS...'
+                emailext(
+                    subject: "SUCCESS: Jenkins Job '${env.JOB_NAME} [#${env.BUILD_NUMBER}]'",
+                    body: """
+                        The Jenkins job '${env.JOB_NAME}' has completed successfully.
+                        
+                        Build Number: ${env.BUILD_NUMBER}
+                        Status: SUCCESS
+                        Build URL: ${env.BUILD_URL}
+                    """,
+                    to: 'sangeethagajendran2000@gmail.com'
+                )
+                echo 'Email sent.'
             }
+        }
+        
+        failure {
+            script {
+                echo 'Sending email for FAILURE...'
+                emailext(
+                    subject: "FAILURE: Jenkins Job '${env.JOB_NAME} [#${env.BUILD_NUMBER}]'",
+                    body: """
+                        The Jenkins job '${env.JOB_NAME}' has FAILED.
+                        
+                        Build Number: ${env.BUILD_NUMBER}
+                        Status: FAILURE
+                        Check logs here: ${env.BUILD_URL}
+                    """,
+                    to: 'sangeethagajendran2000@gmail.com'
+                )
+                echo 'Email sent.'
+            }
+        }
+        
+        // Optional: Run cleanup logic regardless of result
+        always {
+            echo "Pipeline finished with status: ${currentBuild.result}"
+            // Use this block for general cleanup tasks
+        }
+    }
         }
     }
 }
+
