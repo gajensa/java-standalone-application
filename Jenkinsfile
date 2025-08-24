@@ -41,6 +41,7 @@ pipeline {
         stage('Post Build Notification') {
             steps {
                 script {
+                    echo 'Sending email......'
                     if (currentBuild.currentResult == 'SUCCESS') {
                         emailext(
                             subject: "SUCCESS: Jenkins Job '${env.JOB_NAME} [#${env.BUILD_NUMBER}]'",
@@ -66,6 +67,7 @@ pipeline {
                             to: 'sangeethagajendran2000@gmail.com'
                         )
                     }
+                    echo 'email sent....'
                 }
             }
         }
